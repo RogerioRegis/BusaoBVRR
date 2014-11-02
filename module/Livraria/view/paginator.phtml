@@ -1,0 +1,59 @@
+<?php
+$urlPattern = $_SERVER['REQUEST_URI'];
+$formatUrl = function ($page) use ($urlPattern) {
+            if (!preg_match('/page/', $urlPattern))
+                return $urlPattern . "/page/" . $page;
+            else
+                return preg_replace('/\d/', $page, $urlPattern);
+        };
+?>
+<center>
+<?php if ($this->pageCount): ?>
+        <div class="paginationControl">
+        <?php echo $this->firstItemNumber; ?> - <?php echo $this->lastItemNumber; ?> de <?php echo $this->totalItemCount; ?> páginas
+            <br />
+
+
+            <!-- First page link -->
+    <?php if (isset($this->previous)): ?>
+                <a href="<?php echo $formatUrl($this->previous) ?>">
+                    Primeira
+                </a> |
+    <?php else: ?>
+                <span class="disabled">Primeira</span> |
+            <?php endif; ?>
+
+
+            <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+                <a href="<?php echo $formatUrl($this->previous) ?>">
+                    < Anterior
+                </a> |
+    <?php else: ?>
+                <span class="disabled">< Anterior</span> |
+            <?php endif; ?>
+
+
+            <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+                <a href="<?php echo $formatUrl($this->next); ?>">
+                    Próximo >
+                </a> |
+    <?php else: ?>
+                <span class="disabled">Próximo ></span> |
+            <?php endif; ?>
+
+
+            <!-- Last page link -->
+    <?php if (isset($this->next)): ?>
+                <a href="<?php echo $formatUrl($this->next); ?>">
+                    Último
+                </a>
+    <?php else: ?>
+                <span class="disabled">Último</span>
+            <?php endif; ?>
+
+        </div>
+
+<?php endif; ?>
+</center>
