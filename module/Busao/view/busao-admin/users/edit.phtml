@@ -1,0 +1,35 @@
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content"> 
+
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h2>Editando Usuário</h2>
+                <hr />
+                <?php
+                $form = $this->form;
+                $form->setAttribute('action', $this->url('busao-admin', array('controller' => 'users', 'action' => 'edit')));
+                $form->prepare();
+                echo $this->form()->openTag($form);
+                echo $this->formHidden($form->get('id'));
+                echo $this->formRow($form->get('nome'));
+                echo $this->formRow($form->get('email'));
+                echo $this->formRow($form->get('password')) . "<br>";
+                ?>
+                <div class="row">
+                    <div class="col-lg-6"> 
+                        <?php
+                        echo $this->formSubmit($form->get('submit'));
+                        echo $this->form()->closeTag();
+                        ?>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <a class="btn btn-default btn-block" href="<?php echo $this->url('busao-admin', array('controller' => 'users')) ?>"><span class="fa fa-remove"></span> Cancelar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</aside>

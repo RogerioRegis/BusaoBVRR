@@ -1,0 +1,46 @@
+
+<!-- Right side column. Contains the navbar and content of the page -->
+<aside class="right-side">
+    <!-- Main content -->
+    <section class="content"> 
+
+
+        <h2><span class="fa fa-users"></span> Usuários</h2>
+        <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('busao-admin', array('controller' => 'users', 'action' => 'new')) ?>" role="button"><span class="fa fa-user"></span> Novo Usuários</a>
+        <br />
+        <br />
+        <table class="table table-hover table-responsive">
+            <tr class="active">
+                <th>#</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+
+            <?php foreach ($this->data as $entity): ?>
+                <tr>
+                    <td><?php echo $entity->getId(); ?></td>
+                    <td><?php echo $entity->getNome(); ?></td>
+                    <td><?php echo $entity->getEmail(); ?></td>
+                    <td>
+                        <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                           onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Usuário?\n\n***********************************************\n')) {
+                                   document.location = this.href;
+                               }
+                               return false;" id="dialog">
+                            <span class="fa fa-trash"></span> Deletar</a>
+                    </td> 
+                </tr>        
+            <?php endforeach; ?>
+        </table>
+
+        <br>
+
+        <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
+
+    </section>
+</aside>
