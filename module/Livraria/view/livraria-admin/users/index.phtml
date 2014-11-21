@@ -1,53 +1,41 @@
-
-<h2><span class="fa fa-users"></span> Usuários</h2>
-<a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('livraria-admin', array('controller' => 'users', 'action' => 'new')) ?>" role="button"><span class="fa fa-user"></span> Novo Usuários</a>
-<br />
-<br />
-<table class="table table-hover table-responsive">
-    <tr class="active">
-        <th>#</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Salt</th>
-        <th>Editar</th>
-        <th>Excluir</th>
-    </tr>
-
-    <?php foreach ($this->data as $entity): ?>
-        <tr>
-            <td><?php echo $entity->getId(); ?></td>
-            <td><?php echo $entity->getNome(); ?></td>
-            <td><?php echo $entity->getEmail(); ?></td>
-            <td><?php echo $entity->getSalt(); ?></td>
-            <td>
-                <a class="btn btn-success btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
-            </td>
-            <td>
-                <a class="btn btn-danger btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                   onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Usuário?\n\n***********************************************\n')) {
-                               document.location = this.href;
-                           }
-                           return false;" id="dialog">
-                    <span class="fa fa-trash"></span> Deletar</a>
-            </td> 
-        </tr>        
-    <?php endforeach; ?>
-</table>
-
-<br>
-
-<?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
-
-
-<!-- jQuery 2.0.2 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="../js/bootstrap.min.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="../js/AdminLTE/app.js" type="text/javascript"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../js/AdminLTE/demo.js" type="text/javascript"></script>        
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../jsplugins//bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="../jsplugins//iCheck/icheck.min.js" type="text/javascript"></script>
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2><span class="fa fa-users"></span> Usuários</h2>
+            <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('livraria-admin', array('controller' => 'users', 'action' => 'new')) ?>" role="button"><span class="fa fa-user"></span> Novo Usuários</a>
+            <br />
+            <br />
+            <table class="table table-hover table-responsive">
+                <tr class="active">
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Salt</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+                <?php foreach ($this->data as $entity): ?>
+                    <tr>
+                        <td><?php echo $entity->getId(); ?></td>
+                        <td><?php echo $entity->getNome(); ?></td>
+                        <td><?php echo $entity->getEmail(); ?></td>
+                        <td><?php echo $entity->getSalt(); ?></td>
+                        <td>
+                            <a class="btn btn-success btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                               onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Usuário?\n\n***********************************************\n')) {
+                                           document.location = this.href;
+                                       }
+                                       return false;" id="dialog">
+                                <span class="fa fa-trash"></span> Deletar</a>
+                        </td> 
+                    </tr>        
+                <?php endforeach; ?>
+            </table>
+            <br>
+            <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
+        </div>
+    </div>
+</section>

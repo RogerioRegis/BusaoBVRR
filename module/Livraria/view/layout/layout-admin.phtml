@@ -69,7 +69,7 @@
                                 <li class="header bg-yellow-gradient">Linhas Regulars</li>
 
                                 <li><a href="<?php echo $this->url('livraria-admin', array('controller' => 'araceli')) ?>"><i class="fa fa-bus"></i> 313 - ARACELI</a></li>
-                                <li><a href="bairros/ataide-teive.php"><i class="fa fa-bus"></i> 310 - ATAIDE TEIVE</a></li>
+                                <li><a href="<?php echo $this->url('livraria-admin', array('controller' => 'ataide-teive')) ?>"><i class="fa fa-bus"></i> 310 - ATAIDE TEIVE</a></li>
                                 <li><a href="bairros/bairro-dos-estados.php"><i class="fa fa-bus"></i> 252 - BAIRRO DOS ESTADOS</a></li>
                                 <li><a href="bairros/bairro-uniao.php"><i class="fa fa-bus"></i> 104 - BAIRRO UNIÃO</a></li>
                                 <li><a href="bairros/base-aerea.php"><i class="fa fa-bus"></i> 113 - BASE AÉREA</a></li>
@@ -234,7 +234,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="<?php echo $this->url('livraria-admin-logout', array('controller' => 'logout')) ?>" class="btn btn-default btn-flat">Sair</a>
                                     </div>
                                 </li>
                             </ul>
@@ -251,23 +251,23 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                            <img src="http://www.transitomanaus.com.br/imagens/onibusmanaus/onibus-boa-vista.png" class="img-circle" alt="Busão" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, Jane</p>
+                            <p>Ônibus Boa Vista</p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
                     </div>
                     <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
+                    <!--                    <form action="#" method="get" class="sidebar-form">
+                                            <div class="input-group">
+                                                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                                                <span class="input-group-btn">
+                                                    <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>-->
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
@@ -276,6 +276,33 @@
                                 <i class="fa fa-home"></i> <span>Home</span>
                             </a>
                         </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bus"></i>
+                                <span>Todas as Linhas</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="<?php echo $this->url('livraria-admin', array('controller' => 'araceli')) ?>"><i class="fa fa-angle-double-right"></i>ARACELI</a></li>
+                                <li><a href="bairros/ataide-teive.php"><i class="fa fa-angle-double-right"></i>ATAIDE TEIVE</a></li>
+                                <li><a href="bairros/bairro-dos-estados.php"><i class="fa fa-angle-double-right"></i>BAIRRO DOS ESTADOS</a></li>
+                                <li><a href="bairros/bairro-uniao.php"><i class="fa fa-angle-double-right"></i>BAIRRO UNIÃO</a></li>
+                                <li><a href="bairros/base-aerea.php"><i class="fa fa-angle-double-right"></i>BASE AÉREA</a></li>
+                                <li><a href="bairros/cacari.php"><i class="fa fa-angle-double-right"></i>CAÇARI</a></li>
+                                <li><a href="bairros/carana-ufrr.php"><i class="fa fa-angle-double-right"></i>CARANÃ-UFRR</a></li>
+                                <li><a href="bairros/cauame-direto.php"><i class="fa fa-angle-double-right"></i>CAUAMÉ-DIRETO</a></li>
+                                <li><a href="bairros/centenario.php"><i class="fa fa-angle-double-right"></i>CENTENÁRIO</a></li>
+                                <li><a href="bairros/conjunto-cruviana.php"><i class="fa fa-angle-double-right"></i>CONJUNTO CRUVIANA</a></li>
+                                <li><a href="bairros/equatorial.php"><i class="fa fa-angle-double-right"></i>EQUATORIAL</a></li>
+                                <li><a href="bairros/joquei-clube-sao-bento.php"><i class="fa fa-angle-double-right"></i>JOQUEI CLUBE / SÃO BENTO</a></li>
+                                <li><a href="bairros/nova-cidade-direto.php"><i class="fa fa-angle-double-right"></i>NOVA CIDADE</a></li>
+                                <li><a href="bairros/nova-cidade.php"><i class="fa fa-angle-double-right"></i>NOVA CIDADE - DIRETO</a></li>
+                                <li><a href="bairros/s-bot-bacabeira.php"><i class="fa fa-angle-double-right"></i>S. BOT. BACABEIRA</a></li>
+                                <li><a href="bairros/sen-helio-campos.php"><i class="fa fa-angle-double-right"></i>SEN. HÉLIO CAMPOS</a></li>
+                                <li><a href="bairros/silvio-botelho.php"><i class="fa fa-angle-double-right"></i>SÍLVIO BOTELHO</a></li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'livros')) ?>">
                                 <i class="fa fa-map-marker"></i> <span>Percurso</span> <small class="badge pull-right bg-orange">rotas</small>
@@ -426,6 +453,8 @@
 
         <!-- AdminLTE for demo purposes -->
         <script src="/js/AdminLTE/demo.js" type="text/javascript"></script>
+
+        <script src="/js/firulas.js"></script>
 
         <?php echo $this->inlineScript() ?>
 

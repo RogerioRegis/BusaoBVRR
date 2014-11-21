@@ -65,6 +65,7 @@ return array(
             'livraria-admin/auth' => 'LivrariaAdmin\Controller\AuthController',
             
             'araceli' => 'Livraria\Controller\AraceliController',
+            'ataide-teive' => 'Livraria\Controller\AtaideTeiveController',
         ),
     ),
     
