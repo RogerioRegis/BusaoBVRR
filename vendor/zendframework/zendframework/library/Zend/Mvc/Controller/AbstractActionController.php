@@ -97,7 +97,7 @@ abstract class AbstractActionController extends AbstractController
     {
         $response->setStatusCode(404);
         return new ViewModel(array(
-            'content' => 'Page not found',
+            'content' => 'Página não encontrada',
         ));
     }
 
@@ -111,7 +111,7 @@ abstract class AbstractActionController extends AbstractController
     {
         $viewModel = new ConsoleModel();
         $viewModel->setErrorLevel(1);
-        $viewModel->setResult('Page not found');
+        $viewModel->setResult('Página não encontrada');
         return $viewModel;
     }
 }

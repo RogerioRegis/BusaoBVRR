@@ -1,0 +1,43 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-bus"> </i>Home</a></li> <li class="active">Linhas Regulares</li>
+    </ol>
+    <h1>
+        <span class="fa fa-map-marker"></span> Linhas
+        <!--<small> Regulares</small>-->
+    </h1>
+</section>
+
+<section class="content">
+
+    <h2><span class="fa fa-map-marker"></span> Percursos</h2>
+    <br />
+
+    <table class="table table-hover table-responsive">
+        <tr class="active">
+            <th>#</th>
+            <th>Linha</th>
+            <th>Percurso</th>
+            <th>Link</th>
+            <th>Valor</th>
+            <th>ISBN</th>
+        </tr>
+        <?php foreach ($this->categorias as $categoria): ?>
+
+            <tr><?php foreach ($categoria->getLivros() as $livro): ?>
+                    <td><?php echo $categoria->getId(); ?></td>
+                    <td><i class="fa fa-bus"> <?php echo $livro->getNome(); ?></i></td>
+                    <td><?php echo $categoria; ?></td>
+                    <td><a class="btn btn-default btn-block" href="<?php echo $this->url('livraria-admin', array('controller' => 'araceli')) ?>"></a></td>
+                    <td><?php echo $livro->getValor(); ?></td>
+                    <td><?php echo $livro->getIsbn(); ?></td>
+                <?php endforeach; ?>
+            </tr>
+
+        <?php endforeach; ?>
+    </table>
+
+</section><!-- /.content -->
+

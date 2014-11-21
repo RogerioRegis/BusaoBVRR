@@ -1,6 +1,6 @@
 <?php
 
-namespace BusaoAdmin\Form;
+namespace LivrariaAdmin\Form;
 
 use Zend\Form\Form,
     Zend\Form\Element\Select;
@@ -14,7 +14,7 @@ class Livro extends Form {
         $this->categorias = $categorias;
 
         $this->setAttribute('method', 'post');
-//        $this->setInputFilter(new LivroFilter);
+        #$this->setInputFilter(new LivroFilter);
 
         $this->add(array(
             'name' => 'id',
@@ -27,18 +27,18 @@ class Livro extends Form {
             'name' => 'nome',
             'options' => array(
                 'type' => 'text',
-                'label' => 'Nome'
+                'label' => 'Linha'
             ),
             'attributes' => array(
                 'id' => 'nome',
                 'class' => 'form-control',
                 'required' => true,
-                'placeholder' => 'Entre com o nome'
+                'placeholder' => 'Número da Linha'
             )
         ));
 
         $categoria = new Select();
-        $categoria->setLabel("Percurso")
+        $categoria->setLabel("Rota")
                 ->setName("categoria")
                 ->setAttribute('id', 'categoria')
                 ->setAttribute('class', 'form-control')
@@ -56,7 +56,7 @@ class Livro extends Form {
                 'id' => 'autor',
                 'class' => 'form-control',
                 'required' => true,
-                'placeholder' => 'Entre com o autor'
+                'placeholder' => 'Nome do Autor'
             ),
         ));
 
@@ -70,7 +70,7 @@ class Livro extends Form {
                 'id' => 'valor',
                 'class' => 'form-control',
                 'required' => true,
-                'placeholder' => 'Entre com o Valor'
+                'placeholder' => 'Ex: 99,99'
             ),
         ));
 
@@ -84,7 +84,7 @@ class Livro extends Form {
                 'id' => 'isbn',
                 'class' => 'form-control',
                 'required' => true,
-                'placeholder' => 'Entre com o ISBN'
+                'placeholder' => 'Ex: 99-9'
             ),
         ));
 

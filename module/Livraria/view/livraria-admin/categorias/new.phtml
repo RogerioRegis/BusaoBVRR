@@ -1,0 +1,85 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-bus"> </i>Home</a></li> <li class="active">Linhas Regulares</li>
+    </ol>
+    <h1>
+        <span class="fa fa-map-marker"></span> Linhas
+        <!--<small> Regulares</small>-->
+    </h1>
+</section>
+
+<section class="content">
+
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <h2>Nova Categoria</h2>
+            <hr />
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('livraria-admin', array('controller' => 'categorias', 'action' => 'new')));
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('id'));
+            echo $this->formRow($form->get('nome')) . "<br>";
+            ?>
+            <div class="row">
+                <div class="col-lg-6"> 
+                    <?php
+                    echo $this->formSubmit($form->get('submit'));
+                    echo $this->form()->closeTag();
+                    ?>
+                </div>
+                <div class="col-lg-6">
+                    <a class="btn btn-default btn-block" href="<?php echo $this->url('livraria-admin', array('controller' => 'categorias')) ?>"><span class="fa fa-remove"></span> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#new" data-placement="top" title="Nova Categoria"><span class="fa fa-book"></span> Nova Categoria</button>
+
+    <!--MODALS NOVA-->
+    <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close fa-2x"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Nova Categoria</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <?php
+                        $form = $this->form;
+                        $form->setAttribute('action', $this->url('livraria-admin', array('controller' => 'categorias', 'action' => 'new')));
+                        $form->prepare();
+                        echo $this->form()->openTag($form);
+                        echo $this->formHidden($form->get('id'));
+                        echo $this->formRow($form->get('nome')) . "<br>";
+                        ?>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-lg-6"> 
+                            <?php
+                            echo $this->formSubmit($form->get('submit'));
+                            echo $this->form()->closeTag();
+                            ?>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="button" class="btn btn-default btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal-content --> 
+        </div>
+    </div><!-- /.modal-dialog --> 
+
+
+
+</section>

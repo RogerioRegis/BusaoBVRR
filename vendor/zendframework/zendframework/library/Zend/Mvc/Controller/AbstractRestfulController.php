@@ -232,7 +232,7 @@ abstract class AbstractRestfulController extends AbstractController
         $this->response->setStatusCode(404);
 
         return array(
-            'content' => 'Page not found'
+            'content' => 'Página não encontrada'
         );
     }
 
