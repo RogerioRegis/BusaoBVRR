@@ -2,19 +2,16 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <ol class="breadcrumb">
-        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-bus"> </i>Home</a></li> <li class="active">Linhas Regulares</li>
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-line-chart"> </i>Linhas</a></li> <li class="active">Percusro</li>
     </ol>
     <h1>
-        <span class="fa fa-map-marker"></span> Linhas
+        <span class="fa fa-map-marker"></span> Rotas
         <!--<small> Regulares</small>-->
     </h1>
 </section>
-
 <section class="content">
-
-
-    <h2><span class="fa fa-book"></span> Livros</h2>
-    <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('livraria-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-book"></span> Novo Livro</a>
+    <h2><span class="fa fa-line-chart"></span> Rotas</h2>
+    <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('livraria-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-plus"></span> Nova Rota</a>
     <br />
     <br />
     <table class="table table-hover table-responsive">
@@ -22,27 +19,19 @@
             <!--<th>#</th>-->
             <th>Linha</th>
             <th>Percurso</th>
-<!--            <th>Autor</th>
-            <th>Valor</th>
-            <th>ISBN</th>-->
             <th>Editar</th>
             <th>Excluir</th>
         </tr>
-
         <?php foreach ($this->data as $entity): ?>
             <tr>
-                <!--<td><?php // echo $entity->getId();    ?></td>-->
                 <td><?php echo $entity->getNome(); ?></td>
                 <td><?php echo $entity->getCategoria(); ?></td>
-<!--                <td><?php // echo $entity->getAutor(); ?></td>
-                <td><?php // echo $entity->getValor(); ?></td>
-                <td><?php // echo $entity->getIsbn(); ?></td>-->
                 <td>
                     <a class="btn btn-success btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
                 </td>
                 <td>
                     <a class="btn btn-danger btn-xs" href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                       onclick="if (confirm('***********************************************\n\n    Deseja realmente excluir este Livro?\n\n***********************************************\n')) {
+                       onclick="if (confirm('***********************************************\n\n    Deseja realmente excluir esta Rota?\n\n***********************************************\n')) {
                                            document.location = this.href;
                                        }
                                        return false;" id="dialog">
@@ -51,136 +40,7 @@
             </tr>        
         <?php endforeach; ?>
     </table>
-
     <br>
-
-    <?php // echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
-
-
-
-    <br><br><br><br><br><br><br>
-
-
-    <div class="col-md-12">
-        <h2>Categorias Admin2</h2>    
-
-        <button class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#new" data-placement="top" title="Nova Categoria"><span class="fa fa-book"></span> Nova Categoria</button>
-        <br />
-        <br />
-        <div class="table table-hover table-responsive">
-
-            <table class="table table-hover table-responsive">
-
-                <tr class="active">
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Editar</th>
-                    <th>Deletar</th>
-                </tr>
-
-                <tbody>
-                    <?php foreach ($this->data as $entity): ?>
-                        <tr>
-                            <td><?php echo $entity->getId(); ?></td>
-                            <td><?php echo $entity->getNome(); ?></td>
-
-                            <td><button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit" data-placement="top" title="Editar"><span class="glyphicon glyphicon-pencil"></span> Editar</button></td>
-
-                            <td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete" data-placement="top" title="Deletar"><span class="glyphicon glyphicon-trash"></span> Deletar</button></td>
-
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-
-            </table>
-
-            <div class="clearfix"></div>
-            <ul class="pagination pull-right">
-                <li class="disabled"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <!--MODALS NOVA-->
-    <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close fa-2x"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Nova Categoria</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control " type="text" placeholder="Inserir nova categoria">
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Salvar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-                </div>
-            </div>
-            <!-- /.modal-content --> 
-        </div>
-        <!-- /.modal-dialog --> 
-    </div>
-
-    <!--MODALS EDITA-->
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close fa-2x"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Editar Categoria</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control " type="text" placeholder="Nome da Nova Categoria">
-                    </div>
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-ok-sign"></span> Atualizar</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-                </div>
-            </div>
-            <!-- /.modal-content --> 
-        </div>
-        <!-- /.modal-dialog --> 
-    </div>
-
-
-    <!--MODALS DELETA-->
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Deletar Categoria</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="alert alert-warning"><span class="glyphicon glyphicon-warning-sign"></span> Tem certeza de que deseja excluir esta categoria?</div>
-
-                </div>
-                <div class="modal-footer ">
-                    <a class="btn btn-success" href="#"><span class="glyphicon glyphicon-ok-sign"></span> Sim</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Não</button>
-                </div>
-            </div>
-            <!-- /.modal-content --> 
-        </div>
-        <!-- /.modal-dialog --> 
-    </div>
-
-
-
-
+    <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
 </section><!-- /.content -->
 
