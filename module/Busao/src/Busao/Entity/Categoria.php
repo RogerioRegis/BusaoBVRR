@@ -3,6 +3,7 @@
 namespace Busao\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -12,10 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Categoria {
 
     public function __construct($options = null) {
-        Configurator::configure($this, $options);
-//        $this->livros = new ArrayCollection();
+        Configurator::configure($this,$options);
+        $this->livros = new ArrayCollection();
     }
-
+    
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -23,18 +24,18 @@ class Categoria {
      * @var int
      */
     protected $id;
-
+    
     /**
      * @ORM\Column(type="text")
      * @var string
      */
     protected $nome;
-
+    
     /**
      * @ORM\OneToMany(targetEntity="Busao\Entity\Livro", mappedBy="categoria")
      */
     protected $livros;
-
+    
     public function getId() {
         return $this->id;
     }
@@ -54,13 +55,12 @@ class Categoria {
     public function __toString() {
         return $this->nome;
     }
-
+    
     public function getLivros() {
         return $this->livros;
     }
-
+    
     public function toArray() {
-        return array('id' => $this->getId(), 'nome' => $this->getNome());
+        return array('id'=>$this->getId(),'nome'=>$this->getNome());
     }
-
 }

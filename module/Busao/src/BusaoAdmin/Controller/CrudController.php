@@ -24,8 +24,7 @@ abstract class CrudController extends AbstractActionController {
 
         $list = $this->getEm()
                 ->getRepository($this->entity)
-                ->findAll();
-//                ->findBy(array(), array('categoria'=>'asc'));
+                ->findBy(array(), array('nome'=>'asc'));
 
         $page = $this->params()->fromRoute('page');
 

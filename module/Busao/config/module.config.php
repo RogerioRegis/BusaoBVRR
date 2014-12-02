@@ -18,7 +18,7 @@ return array(
             'busao-admin-interna' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/[:controller[/:action]][/:id]',
+                    'route' => '/linha/[:controller[/:action]][/:id]',
                     'constraints' => array(
                         'id' => '[0-9]+'
                     )
@@ -27,7 +27,7 @@ return array(
             'busao-admin' => array(
                 'type' => 'Segment',
                 'options' => array(
-                    'route' => '/admin/[:controller[/:action][/page/:page]]',
+                    'route' => '/linha/[:controller[/:action][/page/:page]]',
                     'defaults' => array(
                         'action' => 'index',
                         'page' => 1
@@ -37,7 +37,7 @@ return array(
             'busao-admin-auth' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/admin/auth',
+                    'route' => '/linha/auth',
                     'defaults' => array(
                         'action' => 'index',
                         'controller' => 'busao-admin/auth'
@@ -47,7 +47,7 @@ return array(
             'busao-admin-logout' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/admin/auth/logout',
+                    'route' => '/linha/auth/logout',
                     'defaults' => array(
                         'action' => 'logout',
                         'controller' => 'busao-admin/auth'
@@ -59,24 +59,18 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Busao\Controller\Index' => 'Busao\Controller\IndexController',
-            'livros' => 'BusaoAdmin\Controller\LivrosController',
             'categorias' => 'BusaoAdmin\Controller\CategoriasController',
+            'livros' => 'BusaoAdmin\Controller\LivrosController',
             'users' => 'BusaoAdmin\Controller\UsersController',
             'busao-admin/auth' => 'BusaoAdmin\Controller\AuthController',
-            
-            'widgets' => 'BusaoAdmin\Controller\WidgetsController',
-            'morris' => 'BusaoAdmin\Controller\MorrisController',
-            'flot' => 'BusaoAdmin\Controller\FlotController',
-            'inline' => 'BusaoAdmin\Controller\InlineController',
-            'calendar' => 'BusaoAdmin\Controller\CalendarController',
-            'mailbox' => 'BusaoAdmin\Controller\MailboxController',
+            'araceli' => 'Busao\Controller\AraceliController',
+            'ataide-teive' => 'Busao\Controller\AtaideTeiveController',
         ),
     ),
     'module_layouts' => array(
-        'Busao' => 'layout/layout-admin',
 //        'Busao' => 'layout/layout',
+        'Busao' => 'layout/layout-admin',
         'BusaoAdmin' => 'layout/layout-admin'
-//        'BusaoAdmin' => 'layout/layout-admin'
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,

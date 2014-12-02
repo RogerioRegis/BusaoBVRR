@@ -4,8 +4,7 @@ return array(
     'modules' => array(
         'DoctrineModule',
         'DoctrineORMModule',
-        'Livraria',
-//        'Busao',
+        'Busao'
     ),
     'module_listener_options' => array(
         'module_paths' => array(

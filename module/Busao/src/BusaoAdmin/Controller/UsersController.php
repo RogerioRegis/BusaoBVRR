@@ -10,7 +10,7 @@ class UsersController extends CrudController {
         $this->form = "BusaoAdmin\Form\User";
         $this->service = "Busao\Service\User";
         $this->controller = "users";
-        $this->route = "busao-admin";
+        $this->route = "Busao-admin";
     }
 
     public function editAction() {

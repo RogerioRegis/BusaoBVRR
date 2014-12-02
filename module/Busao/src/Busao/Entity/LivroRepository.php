@@ -6,6 +6,4 @@ use Doctrine\ORM\EntityRepository;
 
 class LivroRepository extends EntityRepository {
 
-    
-    
 }

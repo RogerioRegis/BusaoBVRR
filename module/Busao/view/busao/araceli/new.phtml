@@ -1,0 +1,38 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <h1>
+        <span class="fa fa-map-marker"></span> Linhas <!--<small> Regulares</small>-->
+    </h1>
+    <ol class="breadcrumb">
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-bus"> </i>Araceli</a></li> <li class="active">Novo Horário</li>
+    </ol>
+</div>
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <h2><span class="fa fa-clock-o"></span> Novo Horário</h2>
+            <hr />
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'new')));
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('id'));
+            echo $this->formRow($form->get('araceli_saida_bairro_uteis')) . "<br>";
+            echo $this->formRow($form->get('araceli_saida_centro_uteis')) . "<br>";
+            ?>
+            <div class="row">
+                <div class="col-lg-6"> 
+                    <?php
+                    echo $this->formSubmit($form->get('submit'));
+                    echo $this->form()->closeTag();
+                    ?>
+                </div>
+                <div class="col-lg-6">
+                    <a class="btn btn-default btn-block" href="<?php echo $this->url('busao-admin', array('controller' => 'araceli')) ?>"><span class="fa fa-remove"></span> Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

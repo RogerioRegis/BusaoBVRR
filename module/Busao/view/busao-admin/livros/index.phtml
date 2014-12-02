@@ -1,61 +1,277 @@
-<!-- Right side column. Contains the navbar and content of the page -->
-<aside class="right-side">
-    <!-- Main content -->
-    <section class="content"> 
-        <h2><span class="fa fa-map-marker"></span> Percuso</h2>
-        <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('busao-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-plus"></span> Novo Percurso</a>
-        <br />
-        <br />
-        <table class="table table-hover table-responsive">
-            <tr class="active">
-                <th class="text-center">#</th>
-                <th class="text-center">Linha</th>
-                <th class="text-center">Rota</th>
-<!--                <th>Autor</th>
-                <th>Valor</th>-->
-                <th class="text-center">Favorito</th>
-                <th class="text-center">Editar</th>
-                <th class="text-center">Excluir</th>
-            </tr>
 
-            <?php foreach ($this->data as $entity): ?>
-            <tr class="text-center">
-                    <td><?php echo $entity->getId(); ?></td>
-                    <td><?php echo $entity->getNome(); ?></td>
-                    <td><?php echo $entity->getCategoria(); ?></td>
-<!--                    <td><?php // echo $entity->getAutor(); ?></td>
-                    <td><?php // echo $entity->getValor(); ?></td>
-                    <td><?php // echo $entity->getIsbn(); ?></td>-->
-                    <td class="small-col text-orange"><span class="fa fa-star"></span></td>
-                    <td>
-                        <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                           onclick="if (confirm('***********************************************\n\n       Deseja realmente excluir esta Rota?\n\n***********************************************\n')) {
-                                       document.location = this.href;
-                                   }
-                                   return false;" id="dialog">
-                            <span class="fa fa-trash"></span> Deletar</a>
-                    </td> 
-                </tr>        
-            <?php endforeach; ?>
-        </table>
-        <br>
-        <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
-    </section>
-</aside>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <ol class="breadcrumb">
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-line-chart"> </i>Linhas</a></li> <li class="active">Percusro</li>
+    </ol>
+    <h1>
+        <span class="fa fa-map-marker"></span> Araceli
+        <!--<small> Regulares</small>-->
+    </h1>
+</div>
+<div class="content">
+    <h2><span class="fa fa-line-chart"></span> Rotas</h2>
+    <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('busao-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-plus"></span> Nova Rota</a>
+    <br />
+    <br />
+    <table class="table table-hover table-responsive">
+        <tr class="active">
+            <!--<th>#</th>-->
+            <th>Linha</th>
+            <th>Percurso</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        <?php foreach ($this->data as $entity): ?>
+            <tr>
+                <td><?php echo $entity->getNome(); ?></td>
+                <td><?php echo $entity->getCategoria(); ?></td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                       onclick="if (confirm('***********************************************\n\n    Deseja realmente excluir esta Rota?\n\n***********************************************\n')) {
+                                   document.location = this.href;
+                               }
+                               return false;" id="dialog">
+                        <span class="fa fa-trash"></span> Deletar</a>
+                </td> 
+            </tr>        
+        <?php endforeach; ?>
+    </table>
+    <br>
+    <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
+
+    <!------------------------------------------------------------------------>
 
 
-<!-- jQuery 2.0.2 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="../js/bootstrap.min.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="../js/AdminLTE/app.js" type="text/javascript"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../js/AdminLTE/demo.js" type="text/javascript"></script>        
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../jsplugins//bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="../jsplugins//iCheck/icheck.min.js" type="text/javascript"></script>
+    <!-- HORARIOS/INTINERÁRIO -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="page-header"><i class="fa fa-clock-o"></i> Horários</h2>
+            <ul id="myTab" class="nav nav-tabs nav-justified">
+                <li class="active"><a href="#service-one" data-toggle="tab"><i class="fa fa-calendar"></i> DIAS ÚTEIS</a>
+                </li>
+                <li class=""><a href="#service-two" data-toggle="tab"><i class="fa fa-calendar"></i> SÁBADO</a>
+                </li>
+                <li class=""><a href="#service-three" data-toggle="tab"><i class="fa fa-calendar"></i> DOMINGOS</a>
+                </li>
+                <li class=""><a href="#service-four" data-toggle="tab"><i class="fa fa-road"></i> INTINERÁRIO</a>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="service-one">
+                    <!--========== Dias Úteis ============-->
+                    <h3 class="text-center">DIAS ÚTEIS</h3>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table table-hover table-responsive">
+                                <tr class="success">
+                                    <th><div class="text-center"><i class="fa fa-arrow-circle-right fa-2x"></i> Saída do <strong>CENTRO</strong></div></th>
+                                <?php if ($this->UserIdentity('BusaoAdmin')): ?>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                <?php endif; ?>
+                                </tr>
+                                <?php foreach ($this->araceli as $entity): ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $entity->getAraceli_saida_centro_uteis(); ?></td>
+                                        <?php if ($this->UserIdentity('BusaoAdmin')): ?>
+                                            <td>
+                                                <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                                                   onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
+                                                               document.location = this.href;
+                                                           }
+                                                           return false;" id="dialog">
+                                                    <span class="fa fa-trash"></span> Deletar</a>
+                                            </td> 
+                                        <?php endif; ?>
+                                    </tr>        
+                                <?php endforeach; ?>
+                            </table>
+                        </div>
+                        <div class="col-lg-6">
+                            <table class="table table-hover table-responsive">
+                                <tr class="success">
+                                    <th>
+                                <div class="text-center"><i class="fa fa-arrow-circle-left fa-2x"></i> Saída do <strong>BAIRRO</strong></div>
+                                </th>
+                                <?php if ($this->UserIdentity('BusaoAdmin')): ?>
+                                    <th>Editar</th>
+                                    <th>Excluir</th>
+                                <?php endif; ?>
+                                </tr>
+                                <?php foreach ($this->araceli as $entity): ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $entity->getAraceli_saida_bairro_uteis(); ?></td>
+                                        <?php if ($this->UserIdentity('BusaoAdmin')): ?>
+                                            <td>
+                                                <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                                                   onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
+                                                               document.location = this.href;
+                                                           }
+                                                           return false;" id="dialog">
+                                                    <span class="fa fa-trash"></span> Deletar</a>
+                                            </td> 
+                                        <?php endif; ?>
+                                    </tr>        
+                                <?php endforeach; ?>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 col-sm-offset-5">
+                            <a class="btn btn-primary center-block" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'new')) ?>" role="button"><span class="fa fa-clock-o"></span> Novo Horário</a>
+                        </div>   
+                    </div>   
+                </div>   
+                <!---FIM DA TABELA DO HORÁRIO DE SEGUNDA A SEXTA-->
+
+
+                <!---TABELA DO HORÁRIO DE SÁBADO-->
+                <div class="tab-pane fade" id="service-two">
+                    <!--========== Sábados ============-->
+                    <h3 class="text-center">SÁBADOS</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th>
+                                <div class="text-center"><i class="fa fa-arrow-circle-right fa-2x"></i> Saída do <strong>CENTRO</strong></div></th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                    <tr><td>06:35</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="active">
+                                        <th><div class="text-center"><i class="fa fa-arrow-circle-left fa-2x"></i> Saída do <strong>BAIRRO</strong></div></th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr><td>05:57</td></tr>
+                                    <tr><td>05:57</td></tr>
+                                    <tr><td>05:57</td></tr>
+                                    <tr><td>05:57</td></tr>
+                                    <tr><td>05:57</td></tr>
+                                    <tr><td>05:57</td></tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+
+                <!---Tabela dos DOMINGOS E FERIADOS-->
+                <div class="tab-pane fade" id="service-three">
+                    <h3 class="text-center">DOMINGOS e FERIADOS</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="danger">
+                                        <th>
+                                <div class="text-center"><i class="fa fa-arrow-circle-right fa-2x"></i> Saída do <strong>CENTRO</strong></div></th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr><td>07:17</td></tr>
+                                    <tr><td>13:02</td></tr>
+                                    <tr><td>14:17</td></tr>
+                                    <tr><td>15:32</td></tr>
+                                    <tr><td>17:35</td></tr>
+                                    <tr><td>18:50</td></tr>
+                                    <tr><td>20:20</td></tr>
+                                    <tr><td>22:00</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-md-6">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="danger">
+                                        <th><div class="text-center"><i class="fa fa-arrow-circle-left fa-2x"></i> Saída do <strong>BAIRRO</strong></div></th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr><td><h4>06:43</h4></td></tr>
+                                    <tr><td><h4>07:36</h4></td></tr>
+                                    <tr><td><h4>13:21</h4></td></tr>
+                                    <tr><td><h4>14:36</h4></td></tr>
+                                    <tr><td><h4>15:51</h4></td></tr>
+                                    <tr><td><h4>17:54</h4></td></tr>
+                                    <tr><td><h4>19:09</h4></td></tr>
+                                    <tr><td><h4>20:39</h4></td></tr>
+                                    <tr><td><h4>22:19</h4></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>   
+                </div>
+                <!--========== FIM do dias da Semana ============-->
+
+                <!--========== intinerário ============-->
+                <div class="tab-pane fade" id="service-four">
+                </div><!--========== Fim do mapa do intinerário ============-->
+                <h1 class="text-center"><small>Percurso <i class="fa fa-map-marker"></i></small> 313 <small>ARACELI</small></h1>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="breadcrumb">
+                            <h3 class="text-center"><small>Centro</small> <i class="fa fa-arrow-circle-right"></i> BAIRRO</h3>
+                        </div>    
+                        <div class="text-center">
+                            <div id="percursodescricao">
+                                <strong>Terminal Centro</strong><br /> Av. Doutor Sílvio Botelho<br /> <strong>Centro Cívico</strong><br /> Av. Doutor Sílvio Botelho<br /> Rua Castelo Branco<br /> Av. Presidente Castelo Branco<br /> Rua Bento Brasil<br /> Av. Eldorado<br /> Rua Antônio Cabral<br /> Av. General Sampaio<br /> Av. das Guianas<br /> Av. Brasil (BR-174)<br /> Av. Capitão Clovis da Costa<br><br>
+                                <iframe src="https://maps.google.com/maps/ms?msid=200258270808067952057.0004f343cfc6653c42191&amp;msa=0&amp;ie=UTF8&amp;t=m&amp;ll=2.801941,-60.695515&amp;spn=0.159797,0.264187&amp;output=embed" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="350px"></iframe>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="breadcrumb">
+                            <h3 class="text-center"><small>Bairro</small> <i class="fa fa-arrow-circle-right"></i> CENTRO</h3>
+                        </div>
+                        <div class="text-center">
+                            <div id="percursodescricao">
+                                Av. Capitão Clovis da Costa<br /> Av. Brigadeiro<br /> Rua Antônio Silvino de Alexandre<br /> Av. Estrela dAlva<br /> Rua Estrelinha<br /> Rua Rio Ereu<br /> Rua Rio Apiaú<br /> Rua CJ 09<br /> Av. Olímpica<br /> Rua JT-03<br /> Rua Ônix<br /> Rua JT-02<br /> Rua JT-10<br /> Rua Topázio<br /> Rua Ametista<br /> Rua José Francisco<br /> Rua Raio Solar<br /> Rua CJ 05<br /> Av. Centenário<br /> Av. Brasil (BR-174)<br /> Av. das Guianas<br /> Av. General Sampaio<br /> Rua Antônio Cabral<br /> Av. Eldorado<br /> Rua Bento Brasil<br /> Av. Presidente Castelo Branco<br /> Rua Castelo Branco<br /> Av. Doutor Sílvio Botelho<br /> <strong>Terminal Centro</strong><br><br>
+                                <iframe src="https://maps.google.com/maps/ms?msid=200258270808067952057.0004f343e0f3b8cd841d7&amp;msa=0&amp;ie=UTF8&amp;t=m&amp;ll=2.798341,-60.700836&amp;spn=0.159798,0.264187&amp;output=embed" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="350"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#">Voltar ao Topo <span class="fa fa-arrow-circle-up"></span></a>
+
+
+
+
+
+
+
+</div><!-- /.content -->
+
+
+

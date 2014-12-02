@@ -1,34 +1,40 @@
-<!-- Right side column. Contains the navbar and content of the page -->
-<aside class="right-side">
-    <!-- Main content -->
-    <section class="content"> 
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <h1>
+        <small>Novo</small> Usuário <span class="fa fa-user"></span>
+    </h1>
+    <ol class="breadcrumb">
+        <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-bus"> </i>LInhas</a></li> <li class="active">Usuários</li><li class="active">Novo Usuário</li>
+    </ol>
+</div>
 
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4">
-                <h2>Novo Usuário</h2>
-                <hr />
-                <?php
-                $form = $this->form;
-                $form->setAttribute('action', $this->url('busao-admin', array('controller' => 'users', 'action' => 'new')));
-                $form->prepare();
-                echo $this->form()->openTag($form);
-                echo $this->formHidden($form->get('id'));
-                echo $this->formRow($form->get('nome')) . "<br>";
-                echo $this->formRow($form->get('email')) . "<br>";
-                echo $this->formRow($form->get('password')) . "<br>";
-                ?>
-                <div class="row">
-                    <div class="col-lg-6"> 
-                        <?php
-                        echo $this->formSubmit($form->get('submit'));
-                        echo $this->form()->closeTag();
-                        ?>
-                    </div>
-                    <div class="col-lg-6"> 
-                        <a class="btn btn-default btn-block" href="<?php echo $this->url('busao-admin', array('controller' => 'users')) ?>"><span class="fa fa-remove"></span> Cancelar</a>
-                    </div>
+<div class="content">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <h2>Novo Usuário</h2>
+            <hr />
+            <?php
+            $form = $this->form;
+            $form->setAttribute('action', $this->url('busao-admin', array('controller' => 'users', 'action' => 'new')));
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('id'));
+            ?>
+            <span class="fa fa-user"></span> <?php echo $this->formRow($form->get('nome')) . "<br>"; ?>
+            <span class="fa fa-envelope"></span> <?php echo $this->formRow($form->get('email')) . "<br>"; ?>
+            <span class="fa fa-lock"></span> <?php echo $this->formRow($form->get('password')) . "<br>"; ?>
+
+            <div class="row">
+                <div class="col-lg-6"> 
+                    <?php
+                    echo $this->formSubmit($form->get('submit'));
+                    echo $this->form()->closeTag();
+                    ?>
+                </div>
+                <div class="col-lg-6"> 
+                    <a class="btn btn-default btn-block" href="<?php echo $this->url('busao-admin', array('controller' => 'users')) ?>"><span class="fa fa-remove"></span> Cancelar</a>
                 </div>
             </div>
         </div>
-    </section>
-</aside>
+    </div>
+</div>

@@ -1,130 +1,106 @@
-<!-- Right side column. Contains the navbar and content of the page -->
-<aside class="right-side">
-    <!-- Main content -->
-    <section class="content"> 
-        <div class="row">
-            <div class="col-lg-3">
-                <img class="img-responsive center-block" src="//www.google.com/images/errors/robot.png" alt="erro"/>
-            </div>
-            <div class="col-lg-9">        
-                <h1>A 404 error occurred</h1>
-                <h2><?php echo $this->message ?></h2>
+<div class="content-header">
+    <h1>404</h1>
+</div>
+<!-- Main content -->
+<div class="content"> 
+    <div class="row">
+        <div class="col-sm-3">
+            <img class="img-responsive center-block" src="//www.google.com/images/errors/robot.png" alt="erro"/>
+        </div>
+        <div class="col-sm-9">        
+            <h1>Ocorreu um erro 404</h1>
+            <h2><?php echo $this->message ?></h2>
+            <?php if (isset($this->reason) && $this->reason): ?>
+                <?php
+                $reasonMessage = '';
+                switch ($this->reason) {
+                    case 'controlador de erro não pode despachar':
+                        'O controlador solicitado não foi capaz de despachar o pedido.';
+                        break;
+                    case 'error-controller-not-found':
+                        'The requested controller could not be mapped to an existing controller class.';
+                        break;
+                    case 'error-controller-invalid':
+                        'The requested controller was not dispatchable.';
+                        break;
+                    case 'error-router-no-match':
+                        'The requested URL could not be matched by routing.';
+                        break;
+                    default:
+                        'We cannot determine at this time why a 404 was generated.';
+                        break;
+                }
+                ?>
+                <p><?php echo $reasonMessage ?></p>
+            <?php endif ?>
+            <?php if (isset($this->controller) && $this->controller): ?>
+                <dl>
+                    <dt>'Controller':</dt>
+                    <dd><?php echo $this->escapeHtml($this->controller) ?>
+                        <?php
+                        if (isset($this->controller_class) && $this->controller_class && $this->controller_class != $this->controller
+                        ) {
+                            echo '(' . sprintf('resolve %s', $this->escapeHtml($this->controller_class)) . ')';
+                        }
+                        ?>
+                    </dd>
+                </dl>
+            <?php endif ?>
+            <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
 
-                <?php if (isset($this->reason) && $this->reason): ?>
-
-                    <?php
-                    $reasonMessage = '';
-                    switch ($this->reason) {
-                        case 'error-controller-cannot-dispatch':
-                            'The requested controller was unable to dispatch the request.';
-                            break;
-                        case 'error-controller-not-found':
-                            'The requested controller could not be mapped to an existing controller class.';
-                            break;
-                        case 'error-controller-invalid':
-                            'The requested controller was not dispatchable.';
-                            break;
-                        case 'error-router-no-match':
-                            'The requested URL could not be matched by routing.';
-                            break;
-                        default:
-                            'We cannot determine at this time why a 404 was generated.';
-                            break;
-                    }
-                    ?>
-
-                    <p><?php echo $reasonMessage ?></p>
-
-                <?php endif ?>
-
-                <?php if (isset($this->controller) && $this->controller): ?>
-
+                <?php if (isset($this->exception) && $this->exception instanceof Exception): ?>
+                    <hr/>
+                    <h2>'Additional information':</h2>
+                    <h3><?php echo get_class($this->exception); ?></h3>
                     <dl>
-                        <dt>'Controller':</dt>
-                        <dd><?php echo $this->escapeHtml($this->controller) ?>
-                            <?php
-                            if (isset($this->controller_class) && $this->controller_class && $this->controller_class != $this->controller
-                            ) {
-                                echo '(' . sprintf('resolves to %s', $this->escapeHtml($this->controller_class)) . ')';
-                            }
-                            ?>
+                        <dt>'File':</dt>
+                        <dd>
+                            <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
+                        </dd>
+                        <dt>'Message':</dt>
+                        <dd>
+                            <pre class="prettyprint linenums"><?php echo $this->exception->getMessage() ?></pre>
+                        </dd>
+                        <dt>'Stack trace':</dt>
+                        <dd>
+                            <pre class="prettyprint linenums"><?php echo $this->exception->getTraceAsString() ?></pre>
                         </dd>
                     </dl>
-
-                <?php endif ?>
-
-                <?php if (isset($this->display_exceptions) && $this->display_exceptions): ?>
-
-                    <?php if (isset($this->exception) && $this->exception instanceof Exception): ?>
+                    <?php
+                    $e = $this->exception->getPrevious();
+                    if ($e) :
+                        ?>
                         <hr/>
-                        <h2>'Additional information':</h2>
-                        <h3><?php echo get_class($this->exception); ?></h3>
-                        <dl>
-                            <dt>'File':</dt>
-                            <dd>
-                                <pre class="prettyprint linenums"><?php echo $this->exception->getFile() ?>:<?php echo $this->exception->getLine() ?></pre>
-                            </dd>
-                            <dt>'Message':</dt>
-                            <dd>
-                                <pre class="prettyprint linenums"><?php echo $this->exception->getMessage() ?></pre>
-                            </dd>
-                            <dt>'Stack trace':</dt>
-                            <dd>
-                                <pre class="prettyprint linenums"><?php echo $this->exception->getTraceAsString() ?></pre>
-                            </dd>
-                        </dl>
-                        <?php
-                        $e = $this->exception->getPrevious();
-                        if ($e) :
+                        <h2>'Previous exceptions':</h2>
+                        <ul class="unstyled">
+                            <?php while ($e) : ?>
+                                <li>
+                                    <h3><?php echo get_class($e); ?></h3>
+                                    <dl>
+                                        <dt>'File':</dt>
+                                        <dd>
+                                            <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
+                                        </dd>
+                                        <dt>'Message':</dt>
+                                        <dd>
+                                            <pre class="prettyprint linenums"><?php echo $e->getMessage() ?></pre>
+                                        </dd>
+                                        <dt>'Stack trace':</dt>
+                                        <dd>
+                                            <pre class="prettyprint linenums"><?php echo $e->getTraceAsString() ?></pre>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <?php
+                                $e = $e->getPrevious();
+                            endwhile;
                             ?>
-                            <hr/>
-                            <h2>'Previous exceptions':</h2>
-                            <ul class="unstyled">
-                                <?php while ($e) : ?>
-                                    <li>
-                                        <h3><?php echo get_class($e); ?></h3>
-                                        <dl>
-                                            <dt>'File':</dt>
-                                            <dd>
-                                                <pre class="prettyprint linenums"><?php echo $e->getFile() ?>:<?php echo $e->getLine() ?></pre>
-                                            </dd>
-                                            <dt>'Message':</dt>
-                                            <dd>
-                                                <pre class="prettyprint linenums"><?php echo $e->getMessage() ?></pre>
-                                            </dd>
-                                            <dt>'Stack trace':</dt>
-                                            <dd>
-                                                <pre class="prettyprint linenums"><?php echo $e->getTraceAsString() ?></pre>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <?php
-                                    $e = $e->getPrevious();
-                                endwhile;
-                                ?>
-                            </ul>
-                        <?php endif; ?>
-
-                    <?php else: ?>
-
-                        <h3>'No Exception available'</h3>
-
-                    <?php endif ?>
-
+                        </ul>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <h3>'Sem exceção disponível'</h3>
                 <?php endif ?>
-
-            </div>
+            <?php endif ?>
         </div>
-
-    </section><!-- /.content -->
-</aside><!-- /.right-side -->
-
-
-<!-- jQuery 2.0.2 -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-<!-- AdminLTE App -->
-<script src="../../js/AdminLTE/app.js" type="text/javascript"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../js/AdminLTE/demo.js" type="text/javascript"></script>
+    </div>
+</div><!-- /.content -->

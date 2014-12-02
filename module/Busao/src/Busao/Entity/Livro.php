@@ -108,7 +108,7 @@ class Livro {
             'autor' => $this->getAutor(),
             'isbn' => $this->getIsbn(),
             'valor' => $this->getValor(),
-            'categoria_id' => $this->getCategoria()->getId()
+            'categoria' => $this->getCategoria()->getId()
         );
     }
 

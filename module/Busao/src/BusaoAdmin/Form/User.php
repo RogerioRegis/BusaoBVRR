@@ -10,7 +10,7 @@ class User extends Form {
         parent::__construct('user');
 
         $this->setAttribute('method', 'post');
-        #$this->setInputFilter(new CategoriaFilter);
+        $this->setInputFilter(new CategoriaFilter);
 
         $this->add(array(
             'name' => 'id',

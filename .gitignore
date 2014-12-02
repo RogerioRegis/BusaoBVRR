@@ -1,4 +1,4 @@
-/nbproject/private/
+/nbproject
 ._*
 .~lock.*
 .buildpath
@@ -7,4 +7,4 @@
 .project
 .settings
 composer.lock
-vendor/
+/vendor

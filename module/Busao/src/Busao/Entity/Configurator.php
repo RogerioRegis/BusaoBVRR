@@ -1,7 +1,7 @@
 <?php
 
 namespace Busao\Entity;
-
+ 
 class Configurator {
     /** Configure a target object with the provided options.
      * 
