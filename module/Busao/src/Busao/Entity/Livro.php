@@ -44,10 +44,10 @@ class Livro {
     protected $isbn;
 
     /**
-     * @ORM\Column(type="float")
-     * @var float
+     * @ORM\Column(type="text")
+     * @var string
      */
-    protected $valor;
+    protected $saida_bairro_sabado;
 
     public function __construct($options = null) {
         Configurator::configure($this, $options);
@@ -93,12 +93,12 @@ class Livro {
         $this->isbn = $isbn;
     }
 
-    public function getValor() {
-        return $this->valor;
+    public function getSaida_bairro_sabado() {
+        return $this->saida_bairro_sabado;
     }
 
-    public function setValor($valor) {
-        $this->valor = $valor;
+    public function setSaida_bairro_sabado($saida_bairro_sabado) {
+        $this->saida_bairro_sabado = $saida_bairro_sabado;
     }
 
     public function toArray() {
@@ -106,8 +106,8 @@ class Livro {
             'id' => $this->getId(),
             'nome' => $this->getNome(),
             'autor' => $this->getAutor(),
+            'saida_bairro_sabado' => $this->getSaida_bairro_sabado(),
             'isbn' => $this->getIsbn(),
-            'valor' => $this->getValor(),
             'categoria' => $this->getCategoria()->getId()
         );
     }

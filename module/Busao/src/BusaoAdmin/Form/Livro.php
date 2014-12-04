@@ -27,14 +27,56 @@ class Livro extends Form {
             'name' => 'nome',
             'options' => array(
                 'type' => 'text',
-                'label' => 'Linha'
+                'label' => 'Saída CENTRO'
             ),
             'attributes' => array(
                 'id' => 'nome',
                 'class' => 'form-control',
-                'required' => true,
-                'placeholder' => 'Número da Linha'
+                'required' => FALSE,
+                'placeholder' => 'Hora de Saída'
             )
+        ));
+
+        $this->add(array(
+            'name' => 'autor',
+            'options' => array(
+                'type' => 'text',
+                'label' => 'Saída BAIRRO'
+            ),
+            'attributes' => array(
+                'id' => 'autor',
+                'class' => 'form-control',
+                'required' => FALSE,
+                'placeholder' => 'Hora de Saída'
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'saida_bairro_sabado',
+            'options' => array(
+                'type' => 'text',
+                'label' => 'Saída CENTRO'
+            ),
+            'attributes' => array(
+                'id' => 'saida_bairro_sabado',
+                'class' => 'form-control',
+                'required' => FALSE,
+                'placeholder' => 'Hora de Saída'
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'isbn',
+            'options' => array(
+                'type' => 'text',
+                'label' => 'Saída BAIRRO'
+            ),
+            'attributes' => array(
+                'id' => 'isbn',
+                'class' => 'form-control',
+                'required' => FALSE,
+                'placeholder' => 'Hora de Saída'
+            ),
         ));
 
         $categoria = new Select();
@@ -45,48 +87,6 @@ class Livro extends Form {
                 ->setOptions(array('value_options' => $this->categorias)
         );
         $this->add($categoria);
-
-        $this->add(array(
-            'name' => 'autor',
-            'options' => array(
-                'type' => 'text',
-                'label' => 'Autor'
-            ),
-            'attributes' => array(
-                'id' => 'autor',
-                'class' => 'form-control',
-                'required' => true,
-                'placeholder' => 'Nome do Autor'
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'valor',
-            'options' => array(
-                'type' => 'number',
-                'label' => 'Valor R$'
-            ),
-            'attributes' => array(
-                'id' => 'valor',
-                'class' => 'form-control',
-                'required' => true,
-                'placeholder' => 'Ex: 99,99'
-            ),
-        ));
-
-        $this->add(array(
-            'name' => 'isbn',
-            'options' => array(
-                'type' => 'text',
-                'label' => 'ISBN'
-            ),
-            'attributes' => array(
-                'id' => 'isbn',
-                'class' => 'form-control',
-                'required' => true,
-                'placeholder' => 'Ex: 99-9'
-            ),
-        ));
 
         $this->add(array(
             'name' => 'submit',

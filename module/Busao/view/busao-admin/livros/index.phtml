@@ -1,51 +1,12 @@
-
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <ol class="breadcrumb">
         <li>Você está em: <a href="/"> &nbsp;<i class="fa fa-line-chart"> </i>Linhas</a></li> <li class="active">Percusro</li>
     </ol>
     <h1>
-        <span class="fa fa-map-marker"></span> Araceli
-        <!--<small> Regulares</small>-->
+        <span class="fa fa-map-marker"></span> Araceli <!--<small> Regulares</small>-->
     </h1>
 </div>
 <div class="content">
-    <h2><span class="fa fa-line-chart"></span> Rotas</h2>
-    <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('busao-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-plus"></span> Nova Rota</a>
-    <br />
-    <br />
-    <table class="table table-hover table-responsive">
-        <tr class="active">
-            <!--<th>#</th>-->
-            <th>Linha</th>
-            <th>Percurso</th>
-            <th>Editar</th>
-            <th>Excluir</th>
-        </tr>
-        <?php foreach ($this->data as $entity): ?>
-            <tr>
-                <td><?php echo $entity->getNome(); ?></td>
-                <td><?php echo $entity->getCategoria(); ?></td>
-                <td>
-                    <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
-                </td>
-                <td>
-                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                       onclick="if (confirm('***********************************************\n\n    Deseja realmente excluir esta Rota?\n\n***********************************************\n')) {
-                                   document.location = this.href;
-                               }
-                               return false;" id="dialog">
-                        <span class="fa fa-trash"></span> Deletar</a>
-                </td> 
-            </tr>        
-        <?php endforeach; ?>
-    </table>
-    <br>
-    <?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
-
-    <!------------------------------------------------------------------------>
-
-
     <!-- HORARIOS/INTINERÁRIO -->
     <div class="row">
         <div class="col-lg-12">
@@ -69,27 +30,23 @@
                             <table class="table table-hover table-responsive">
                                 <tr class="success">
                                     <th><div class="text-center"><i class="fa fa-arrow-circle-right fa-2x"></i> Saída do <strong>CENTRO</strong></div></th>
-                                <?php if ($this->UserIdentity('BusaoAdmin')): ?>
-                                    <th>Editar</th>
-                                    <th>Excluir</th>
-                                <?php endif; ?>
+                                <th>Editar</th>
+                                <th>Excluir</th>
                                 </tr>
-                                <?php foreach ($this->araceli as $entity): ?>
+                                <?php foreach ($this->data as $entity): ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $entity->getAraceli_saida_centro_uteis(); ?></td>
-                                        <?php if ($this->UserIdentity('BusaoAdmin')): ?>
-                                            <td>
-                                                <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                                                   onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
-                                                               document.location = this.href;
-                                                           }
-                                                           return false;" id="dialog">
-                                                    <span class="fa fa-trash"></span> Deletar</a>
-                                            </td> 
-                                        <?php endif; ?>
+                                        <td class="text-center"><?php echo $entity->getNome(); ?></td>
+                                        <td>
+                                            <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                                               onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
+                                                           document.location = this.href;
+                                                       }
+                                                       return false;" id="dialog">
+                                                <span class="fa fa-trash"></span> Deletar</a>
+                                        </td> 
                                     </tr>        
                                 <?php endforeach; ?>
                             </table>
@@ -100,27 +57,23 @@
                                     <th>
                                 <div class="text-center"><i class="fa fa-arrow-circle-left fa-2x"></i> Saída do <strong>BAIRRO</strong></div>
                                 </th>
-                                <?php if ($this->UserIdentity('BusaoAdmin')): ?>
-                                    <th>Editar</th>
-                                    <th>Excluir</th>
-                                <?php endif; ?>
+                                <th>Editar</th>
+                                <th>Excluir</th>
                                 </tr>
-                                <?php foreach ($this->araceli as $entity): ?>
+                                <?php foreach ($this->data as $entity): ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $entity->getAraceli_saida_bairro_uteis(); ?></td>
-                                        <?php if ($this->UserIdentity('BusaoAdmin')): ?>
-                                            <td>
-                                                <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
-                                                   onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
-                                                               document.location = this.href;
-                                                           }
-                                                           return false;" id="dialog">
-                                                    <span class="fa fa-trash"></span> Deletar</a>
-                                            </td> 
-                                        <?php endif; ?>
+                                        <td class="text-center"><?php echo $entity->getAutor(); ?></td>
+                                        <td>
+                                            <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                                               onclick="if (confirm('***********************************************\n\n  Deseja realmente excluir este Horário?\n\n***********************************************\n')) {
+                                                           document.location = this.href;
+                                                       }
+                                                       return false;" id="dialog">
+                                                <span class="fa fa-trash"></span> Deletar</a>
+                                        </td> 
                                     </tr>        
                                 <?php endforeach; ?>
                             </table>
@@ -128,7 +81,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-2 col-sm-offset-5">
-                            <a class="btn btn-primary center-block" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'araceli', 'action' => 'new')) ?>" role="button"><span class="fa fa-clock-o"></span> Novo Horário</a>
+                            <a class="btn btn-primary center-block" href="<?php echo $this->url('busao-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-clock-o"></span> Novo Horário</a>
                         </div>   
                     </div>   
                 </div>   
@@ -268,8 +221,47 @@
 
 
 
-
-
+    <h2><span class="fa fa-line-chart"></span> Rotas</h2>
+    <a class="btn btn-primary btn-sm pull-right" href="<?php echo $this->url('busao-admin', array('controller' => 'livros', 'action' => 'new')) ?>" role="button"><span class="fa fa-plus"></span> Nova Rota</a>
+    <br />
+    <br />
+    <table class="table table-hover text-center">
+        <tr class="active">
+            <!--<th>#</th>-->
+            <th>Saída Bairro Úteis</th>
+            <th>Saída Centro Úteis</th>
+            <th>Saída Bairro Sábados</th>
+            <th>Saída Centro Sábados</th>
+            
+            <th>Percurso</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        <?php foreach ($this->data as $entity): ?>
+            <tr>
+                <td><?php echo $entity->getNome(); ?></td>
+                <td><?php echo $entity->getAutor(); ?></td>
+                
+                <td><?php echo $entity->getSaida_bairro_sabado(); ?></td>
+                <td><?php echo $entity->getIsbn(); ?></td>
+                
+                <td><?php echo $entity->getCategoria(); ?></td>
+                <td>
+                    <a class="btn btn-success btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId())); ?>"><span class="fa fa-pencil"></span> Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url('busao-admin-interna', array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId())); ?>" 
+                       onclick="if (confirm('***********************************************\n\n    Deseja realmente excluir esta Rota?\n\n***********************************************\n')) {
+                                   document.location = this.href;
+                               }
+                               return false;" id="dialog">
+                        <span class="fa fa-trash"></span> Deletar</a>
+                </td> 
+            </tr>        
+        <?php endforeach; ?>
+    </table>
+    <br>
+    <?php // echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
 
 </div><!-- /.content -->
 

@@ -105,16 +105,16 @@ class Livro extends \Busao\Entity\Livro implements \Doctrine\ORM\Proxy\Proxy
         return parent::setIsbn($isbn);
     }
 
-    public function getValor()
+    public function getSaida_bairro_sabado()
     {
         $this->__load();
-        return parent::getValor();
+        return parent::getSaida_bairro_sabado();
     }
 
-    public function setValor($valor)
+    public function setSaida_bairro_sabado($saida_bairro_sabado)
     {
         $this->__load();
-        return parent::setValor($valor);
+        return parent::setSaida_bairro_sabado($saida_bairro_sabado);
     }
 
     public function toArray()
@@ -126,7 +126,7 @@ class Livro extends \Busao\Entity\Livro implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'nome', 'autor', 'isbn', 'valor', 'categoria');
+        return array('__isInitialized__', 'id', 'nome', 'autor', 'isbn', 'saida_bairro_sabado', 'categoria');
     }
 
     public function __clone()
